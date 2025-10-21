@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Shield, Scan, ArrowRight } from "lucide-react";
+import { Shield, Scan, ArrowRight, MessageSquare } from "lucide-react";
+import { useState } from "react";
+import { AppScanModal } from "./AppScanModal";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
+  const [scanModalOpen, setScanModalOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
       {/* Animated Background Particles */}
@@ -73,14 +78,22 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button variant="premium" size="xl" className="group">
+            <Button 
+              variant="premium" 
+              size="xl" 
+              className="group"
+              onClick={() => setScanModalOpen(true)}
+            >
               <Scan className="w-5 h-5 mr-2 group-hover:animate-pulse" />
               Scan an App
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="hero" size="xl">
-              Explore Safe Apps
-            </Button>
+            <Link to="/finsage">
+              <Button variant="hero" size="xl" className="group">
+                <MessageSquare className="w-5 h-5 mr-2" />
+                Chat with FinSage
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Trust Indicators */}
@@ -114,6 +127,9 @@ export const HeroSection = () => {
           <div className="w-1 h-3 bg-accent-cyan rounded-full animate-pulse" />
         </div>
       </motion.div>
+
+      {/* App Scan Modal */}
+      <AppScanModal open={scanModalOpen} onOpenChange={setScanModalOpen} />
     </section>
   );
 };

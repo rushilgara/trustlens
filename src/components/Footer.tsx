@@ -1,4 +1,5 @@
-import { Shield, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Shield, Twitter, Linkedin, Youtube, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const links = {
@@ -6,6 +7,7 @@ export const Footer = () => {
       { name: "Home", href: "#hero" },
       { name: "Features", href: "#features" },
       { name: "Trust Score", href: "#trust-score" },
+      { name: "FinSage Chat", href: "/finsage" },
       { name: "Contact", href: "#contact" },
     ],
     company: [
@@ -62,12 +64,21 @@ export const Footer = () => {
             <ul className="space-y-3">
               {links.product.map((link, idx) => (
                 <li key={idx}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-accent-cyan transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href.startsWith('#') ? (
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-accent-cyan transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-muted-foreground hover:text-accent-cyan transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
