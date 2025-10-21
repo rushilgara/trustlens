@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# TrustLens AI - Your Financial Safety Guardian
 
-## Project info
+A luxurious, futuristic, cinematic website showcasing TrustLens AI — an advanced agentic AI system that protects users from predatory loan apps, financial scams, and misinformation.
 
-**URL**: https://lovable.dev/projects/9ad48d67-ef0f-4308-a4eb-b839a8dbc68e
+## 🌟 Features
 
-## How can I edit this code?
+- **Stunning Design System**: Glassmorphism + futuristic AI dashboard aesthetics
+- **Interactive 3D Elements**: Animated shields, holograms, and particle effects
+- **Trust Score System**: Dynamic 0-100 scoring with visual indicators
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Smooth Animations**: Powered by Framer Motion
+- **SEO Optimized**: Semantic HTML, meta tags, and accessibility features
 
-There are several ways of editing your application.
+## 🎨 Design Philosophy
 
-**Use Lovable**
+- **Colors**: Deep navy/space blue, glowing cyan, emerald, and gold accents
+- **Typography**: Inter font family for clean, modern aesthetics
+- **Effects**: Glassmorphism, parallax scrolling, neon glows, blur transparency
+- **Mood**: Trustworthy, intelligent, powerful, safe, high-tech
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9ad48d67-ef0f-4308-a4eb-b839a8dbc68e) and start prompting.
+## 🚀 Technologies
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** with TypeScript
+- **Tailwind CSS** with custom design system
+- **Framer Motion** for animations
+- **React Three Fiber** for 3D graphics
+- **Vite** for blazing-fast development
+- **shadcn/ui** components
 
-**Use your preferred IDE**
+## 📦 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd trustlens-ai
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🎯 Core Sections
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Hero Section**: Immersive introduction with animated particles and 3D shield
+2. **Problem Section**: Highlights the 300% surge in predatory loan apps
+3. **Vision Section**: Showcases agentic AI capabilities
+4. **Trust Score**: Interactive scoring system demonstration
+5. **Features**: Core protection capabilities
+6. **About**: Mission and future roadmap
+7. **Testimonials**: User stories and reviews
+8. **Contact**: Waitlist signup form
+9. **Footer**: Links and social media
 
-**Use GitHub Codespaces**
+## 🔮 Future Enhancements
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Chrome extension with live verification badges
+- Play Store integration
+- Banking API partnerships
+- Community-driven database
+- RBI regulatory collaboration
 
-## What technologies are used for this project?
+## 📄 License
 
-This project is built with:
+© 2025 TrustLens AI. All rights reserved.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🤝 Contributing
 
-## How can I deploy this project?
+This project is currently in development. For inquiries, please reach out through the contact form on the website.
 
-Simply open [Lovable](https://lovable.dev/projects/9ad48d67-ef0f-4308-a4eb-b839a8dbc68e) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Built with ❤️ to protect financial freedom
