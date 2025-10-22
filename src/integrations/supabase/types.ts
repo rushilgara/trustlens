@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      apps: {
+        Row: {
+          app_name: string
+          category: string
+          created_at: string
+          developer: string
+          icon_url: string | null
+          id: string
+          package_id: string | null
+          permissions: string[] | null
+          play_store_link: string | null
+          rbi_verified: boolean | null
+          reason: string
+          trust_score: number
+          updated_at: string
+        }
+        Insert: {
+          app_name: string
+          category: string
+          created_at?: string
+          developer: string
+          icon_url?: string | null
+          id?: string
+          package_id?: string | null
+          permissions?: string[] | null
+          play_store_link?: string | null
+          rbi_verified?: boolean | null
+          reason: string
+          trust_score: number
+          updated_at?: string
+        }
+        Update: {
+          app_name?: string
+          category?: string
+          created_at?: string
+          developer?: string
+          icon_url?: string | null
+          id?: string
+          package_id?: string | null
+          permissions?: string[] | null
+          play_store_link?: string | null
+          rbi_verified?: boolean | null
+          reason?: string
+          trust_score?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
