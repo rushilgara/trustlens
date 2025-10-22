@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Loader2, Search, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface AppScanModalProps {
   open: boolean;
@@ -83,15 +82,8 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
           </DialogDescription>
         </DialogHeader>
 
-        <AnimatePresence mode="wait">
-          {!analysis ? (
-            <motion.div
-              key="input"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-6 py-4"
-            >
+        {!analysis ? (
+          <div className="space-y-6 py-4">
               <div className="space-y-2">
                 <Label htmlFor="appInput">Enter App Name or Paste App Link</Label>
                 <Input
@@ -109,13 +101,9 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
               </div>
 
               {error && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="p-4 rounded-lg bg-destructive/10 border border-destructive/30 text-destructive"
-                >
+                <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/30 text-destructive">
                   {error}
-                </motion.div>
+                </div>
               )}
 
               <Button
@@ -138,15 +126,9 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
                   </>
                 )}
               </Button>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="results"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-6 py-4"
-            >
+          </div>
+        ) : (
+          <div className="space-y-6 py-4">
               {/* App Header */}
               <div className="flex items-center gap-4 p-6 glass-card rounded-2xl">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 flex items-center justify-center overflow-hidden">
@@ -177,10 +159,8 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
                 
                 {/* Score Bar */}
                 <div className="mt-4 h-3 bg-muted rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${analysis.trust_score}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
+                  <div
+                    style={{ width: `${analysis.trust_score}%` }}
                     className={`h-full ${
                       analysis.trust_score >= 80 ? "bg-success" :
                       analysis.trust_score >= 50 ? "bg-warning" :
@@ -194,11 +174,8 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
               <div className="space-y-3">
                 <h4 className="font-semibold text-lg">Why this score?</h4>
                 {analysis.reasons.map((reason, idx) => (
-                  <motion.div
+                  <div
                     key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
                     className="flex items-start gap-3 p-4 glass-card rounded-lg"
                   >
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
@@ -207,7 +184,7 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
                       {analysis.status === "Safe" ? "✓" : "!"}
                     </div>
                     <p className="text-sm text-muted-foreground">{reason}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -238,9 +215,8 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
                   Close
                 </Button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
