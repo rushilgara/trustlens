@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
@@ -78,6 +78,9 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
           <DialogTitle className="text-3xl font-bold gradient-text">
             Scan App Safety
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Enter an app name or paste an app link to check its safety and trust score
+          </DialogDescription>
         </DialogHeader>
 
         <AnimatePresence mode="wait">
