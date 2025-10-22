@@ -72,8 +72,8 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="glass-card max-w-2xl max-h-[90vh] overflow-y-auto">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="glass-card max-w-2xl max-h-[90vh] overflow-y-auto" onInteractOutside={(e) => analysis && e.preventDefault()}>
         <DialogHeader>
           <DialogTitle className="text-3xl font-bold gradient-text">
             Scan App Safety
@@ -119,6 +119,7 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
               )}
 
               <Button
+                type="button"
                 variant="premium"
                 size="lg"
                 className="w-full"
@@ -213,17 +214,22 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
               {/* Actions */}
               <div className="flex gap-3">
                 <Button
+                  type="button"
                   variant="glass"
                   size="lg"
                   className="flex-1"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     setAnalysis(null);
                     setAppInput("");
+                    setError(null);
                   }}
                 >
                   Scan Another App
                 </Button>
                 <Button
+                  type="button"
                   variant="hero"
                   size="lg"
                   className="flex-1"
