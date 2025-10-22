@@ -168,7 +168,7 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
               </div>
 
               {/* Trust Score */}
-              <div className="glass-card p-8 text-center animated-border">
+              <div className="glass-card p-8 text-center">
                 <div className="text-sm text-muted-foreground mb-2">Trust Score</div>
                 <div className={`text-6xl font-bold ${getScoreColor(analysis.trust_score)}`}>
                   {analysis.trust_score}
