@@ -58,12 +58,18 @@ Rules:
 - trust_score must be 0-100 (number)
 - status must be exactly "Safe" or "Unsafe" (string)
 - reasons must be an array of 3-5 specific, factual strings
-- icon_url should be a real Play Store or App Store icon URL (if you can infer it)
-- If you cannot find the app, set trust_score to 0, status to "Unsafe", app_name to the input, and reasons to ["App not found or not available in official stores", "Cannot verify legitimacy", "Recommend using only verified financial apps"]`;
+- icon_url MUST be a real Play Store icon URL from play-lh.googleusercontent.com domain. Extract the actual app icon from Google Play Store.
+- For popular apps, always include their real icon URL from the Play Store
+- If you cannot find the app icon or app doesn't exist in Play Store, set icon_url to empty string ""
+- If you cannot find the app, set trust_score to 0, status to "Unsafe", app_name to the input, icon_url to "", and reasons to ["App not found or not available in official stores", "Cannot verify legitimacy", "Recommend using only verified financial apps"]`;
 
     const userPrompt = `Analyze this app: ${appInput}
 
-If it's a Play Store or App Store link, extract the app name from the URL.
+If it's a Play Store or App Store link, extract the app name and package ID from the URL.
+For the icon_url field, you MUST provide the real Google Play Store icon URL in this format:
+https://play-lh.googleusercontent.com/[icon-hash]
+
+For popular Indian financial apps, search your knowledge for their actual Play Store icon URLs.
 Return accurate trust assessment based on your knowledge of Indian financial apps.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

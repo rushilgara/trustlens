@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import { Loader2, Search, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { Loader2, Search, CheckCircle, XCircle, AlertTriangle, Shield } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface AppScanModalProps {
@@ -131,11 +131,11 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
           <div className="space-y-6 py-4">
               {/* App Header */}
               <div className="flex items-center gap-4 p-6 glass-card rounded-2xl">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 flex items-center justify-center overflow-hidden">
+                <div className="w-16 h-16 rounded-xl bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
                   {analysis.icon_url ? (
-                    <img src={analysis.icon_url} alt={analysis.app_name} className="w-full h-full object-cover" />
+                    <img src={analysis.icon_url} alt={analysis.app_name} className="w-16 h-16 rounded-xl object-cover" />
                   ) : (
-                    <span className="text-2xl">📱</span>
+                    <Shield className="w-8 h-8 text-muted-foreground" />
                   )}
                 </div>
                 <div className="flex-1">
