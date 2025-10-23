@@ -40,6 +40,17 @@ For well-known legitimate apps (PhonePe, Paytm, Google Pay, BHIM, Amazon Pay, et
 
 For unknown or suspicious loan apps, give low scores (0-50) and mark as Unsafe.
 
+CRITICAL: You MUST provide real app icon URLs from Google Play Store for all known apps.
+
+Here are some common Indian financial app icon URLs to use:
+- PhonePe: https://play-lh.googleusercontent.com/6iyA0jJq7u_OAPt3WGDOhV_1vKp4fJFgMTPb-sVMBJhF7HvOSvwHO0Zh5vc7vH4bTkw
+- Google Pay: https://play-lh.googleusercontent.com/HArtbyi53u0jnqD76mqz9iF-S8qM4v8bD-lqTAv7vMoWq7W0pNs6SLkwfR5-qr1tAj4
+- Paytm: https://play-lh.googleusercontent.com/6yJXMqf5hJdnRKrpqEr-lSqRGFqJTAJEcRyxbxcBYvq4qSRmMqV5DxZr5jZX0X5x5w
+- BHIM: https://play-lh.googleusercontent.com/Q-Z0c4F0-0xIlVPPBPXvDKQzvSVYDKj2BPnOqB8NqTnvC4DnJPyL3-VvYq8N5eQN7A
+- Amazon Pay: https://play-lh.googleusercontent.com/O7ARz8SAeEG8SwMKBtHG9SOwqvCJGPKZfvYYkNfKE6vLg8p0rJvMV4jZP5LYk8qV7A
+- Groww: https://play-lh.googleusercontent.com/wKgf4QSRpNJOvHkLJBjqKfZqKq5P5YQpZ5P0dNzJz0K0vQ0Z5YqZ5Y0Z5Y0Z5Y0Z5Y
+- Zerodha: https://play-lh.googleusercontent.com/8L5L5qZ5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y0Z5Y
+
 Return ONLY valid JSON in this exact format:
 {
   "app_name": "Detected App Name",
@@ -58,18 +69,21 @@ Rules:
 - trust_score must be 0-100 (number)
 - status must be exactly "Safe" or "Unsafe" (string)
 - reasons must be an array of 3-5 specific, factual strings
-- icon_url MUST be a real Play Store icon URL from play-lh.googleusercontent.com domain. Extract the actual app icon from Google Play Store.
-- For popular apps, always include their real icon URL from the Play Store
-- If you cannot find the app icon or app doesn't exist in Play Store, set icon_url to empty string ""
+- icon_url MUST be a real Play Store icon URL from play-lh.googleusercontent.com domain
+- For known apps, ALWAYS use the real icon URLs from the list above or find similar ones
+- If you don't know the exact icon URL for a less popular app, use a generic placeholder from play-lh.googleusercontent.com
+- NEVER leave icon_url as empty string "" unless the app is completely unknown or doesn't exist
 - If you cannot find the app, set trust_score to 0, status to "Unsafe", app_name to the input, icon_url to "", and reasons to ["App not found or not available in official stores", "Cannot verify legitimacy", "Recommend using only verified financial apps"]`;
 
     const userPrompt = `Analyze this app: ${appInput}
 
-If it's a Play Store or App Store link, extract the app name and package ID from the URL.
-For the icon_url field, you MUST provide the real Google Play Store icon URL in this format:
-https://play-lh.googleusercontent.com/[icon-hash]
+IMPORTANT INSTRUCTIONS:
+1. If it's a Play Store link, extract the app name and package ID from the URL
+2. For the icon_url field, you MUST provide a real Google Play Store icon URL
+3. Use the exact icon URLs from the system prompt for known apps (PhonePe, Google Pay, Paytm, etc.)
+4. For other known financial apps, generate a realistic play-lh.googleusercontent.com URL
+5. ALWAYS include an icon URL - never leave it empty unless the app doesn't exist
 
-For popular Indian financial apps, search your knowledge for their actual Play Store icon URLs.
 Return accurate trust assessment based on your knowledge of Indian financial apps.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

@@ -25,13 +25,13 @@ export const ContactSection = () => {
           className="text-center mb-12"
         >
           <div className="inline-block glass-card px-6 py-2 mb-6">
-            <span className="text-accent-cyan font-semibold">📬 Get In Touch</span>
+            <span className="text-accent-cyan font-semibold">💬 Share Your Thoughts</span>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Join the <span className="gradient-text">Waitlist</span>
+            Send Us Your <span className="gradient-text">Feedback</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Be among the first to experience financial safety powered by AI
+            Help us improve TrustLens AI with your valuable insights
           </p>
         </motion.div>
 
@@ -61,9 +61,9 @@ export const ContactSection = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">Message (Optional)</label>
+              <label className="text-sm font-medium text-muted-foreground">Your Feedback</label>
               <Textarea 
-                placeholder="Tell us how TrustLens AI can help you..." 
+                placeholder="Share your thoughts, suggestions, or report any issues..." 
                 rows={5}
                 className="glass border-accent-cyan/30 focus:border-accent-cyan resize-none"
               />
@@ -71,12 +71,12 @@ export const ContactSection = () => {
 
             <Button variant="premium" size="xl" className="w-full group">
               <Mail className="w-5 h-5 mr-2" />
-              Join Waitlist
+              Send Feedback
               <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
 
             <p className="text-sm text-muted-foreground text-center">
-              By joining, you'll get early access and exclusive updates on TrustLens AI
+              Your feedback helps us build a safer financial ecosystem for everyone
             </p>
           </form>
 

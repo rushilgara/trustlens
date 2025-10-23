@@ -96,7 +96,11 @@ export const AppCard = ({ app, onViewDetails }: AppCardProps) => {
             <Button
               variant="outline"
               size="icon"
-              onClick={() => window.open(app.play_store_link!, '_blank')}
+              onClick={() => {
+                if (app.play_store_link) {
+                  window.open(app.play_store_link, '_blank', 'noopener,noreferrer');
+                }
+              }}
             >
               <ExternalLink className="w-4 h-4" />
             </Button>

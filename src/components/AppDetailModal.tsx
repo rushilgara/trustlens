@@ -144,7 +144,11 @@ export const AppDetailModal = ({ app, open, onOpenChange }: AppDetailModalProps)
           {/* Action Button */}
           {app.play_store_link && (
             <Button
-              onClick={() => window.open(app.play_store_link!, '_blank')}
+              onClick={() => {
+                if (app.play_store_link) {
+                  window.open(app.play_store_link, '_blank', 'noopener,noreferrer');
+                }
+              }}
               className="w-full"
               size="lg"
             >
