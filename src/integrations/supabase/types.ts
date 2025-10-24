@@ -62,6 +62,67 @@ export type Database = {
         }
         Relationships: []
       }
+      user_scans: {
+        Row: {
+          app_id: string
+          id: string
+          scanned_at: string
+          user_id: string
+        }
+        Insert: {
+          app_id: string
+          id?: string
+          scanned_at?: string
+          user_id: string
+        }
+        Update: {
+          app_id?: string
+          id?: string
+          scanned_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_scans_app_id_fkey"
+            columns: ["app_id"]
+            isOneToOne: false
+            referencedRelation: "apps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_watchlist: {
+        Row: {
+          added_at: string
+          app_id: string
+          id: string
+          notes: string | null
+          user_id: string
+        }
+        Insert: {
+          added_at?: string
+          app_id: string
+          id?: string
+          notes?: string | null
+          user_id: string
+        }
+        Update: {
+          added_at?: string
+          app_id?: string
+          id?: string
+          notes?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_watchlist_app_id_fkey"
+            columns: ["app_id"]
+            isOneToOne: false
+            referencedRelation: "apps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
