@@ -1,15 +1,35 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Shield, Scan, ArrowRight, MessageSquare, Compass } from "lucide-react";
+import { Shield, Scan, ArrowRight, MessageSquare, Compass, User, LogIn } from "lucide-react";
 import { useState } from "react";
 import { AppScanModal } from "./AppScanModal";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 export const HeroSection = () => {
   const [scanModalOpen, setScanModalOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+      {/* Auth Navigation */}
+      <div className="absolute top-4 right-4 z-20">
+        {user ? (
+          <Link to="/dashboard">
+            <Button variant="hero" size="lg">
+              <User className="w-4 h-4 mr-2" />
+              Dashboard
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/auth">
+            <Button variant="hero" size="lg">
+              <LogIn className="w-4 h-4 mr-2" />
+              Login / Sign Up
+            </Button>
+          </Link>
+        )}
+      </div>
       {/* Animated Background Particles */}
       <div className="particles absolute inset-0">
         {[...Array(20)].map((_, i) => (

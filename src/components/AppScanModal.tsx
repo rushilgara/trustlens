@@ -3,8 +3,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import { Loader2, Search, CheckCircle, XCircle, AlertTriangle, Shield } from "lucide-react";
+import { Loader2, Search, CheckCircle, XCircle, AlertTriangle, Shield, BookmarkPlus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface AppScanModalProps {
   open: boolean;
@@ -17,13 +19,17 @@ interface AppAnalysis {
   trust_score: number;
   status: "Safe" | "Unsafe";
   reasons: string[];
+  app_id?: string;
 }
 
 export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [appInput, setAppInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [analysis, setAnalysis] = useState<AppAnalysis | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savingToHistory, setSavingToHistory] = useState(false);
 
   const handleScan = async () => {
     if (!appInput.trim()) {
@@ -43,11 +49,79 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
       if (functionError) throw functionError;
       
       setAnalysis(data);
+      
+      // Save to user_scans if user is logged in
+      if (user && data.app_id) {
+        setTimeout(async () => {
+          try {
+            const { error: scanError } = await supabase
+              .from('user_scans')
+              .insert({
+                user_id: user.id,
+                app_id: data.app_id,
+              });
+
+            if (scanError && !scanError.message.includes('duplicate')) {
+              console.error('Error saving scan:', scanError);
+            }
+          } catch (err) {
+            console.error('Error saving scan:', err);
+          }
+        }, 0);
+      }
     } catch (err: any) {
       console.error('Error analyzing app:', err);
       setError(err.message || 'Failed to analyze app. Please try again.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleAddToWatchlist = async () => {
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Login Required",
+        description: "Please login to add apps to your watchlist",
+      });
+      return;
+    }
+
+    if (!analysis?.app_id) return;
+
+    setSavingToHistory(true);
+    try {
+      const { error } = await supabase
+        .from('user_watchlist')
+        .insert({
+          user_id: user.id,
+          app_id: analysis.app_id,
+        });
+
+      if (error) {
+        if (error.message.includes('duplicate')) {
+          toast({
+            variant: "destructive",
+            title: "Already Added",
+            description: "This app is already in your watchlist",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Added to Watchlist",
+          description: "You can view this app in your dashboard",
+        });
+      }
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: err.message || "Failed to add to watchlist",
+      });
+    } finally {
+      setSavingToHistory(false);
     }
   };
 
@@ -190,6 +264,19 @@ export const AppScanModal = ({ open, onOpenChange }: AppScanModalProps) => {
 
               {/* Actions */}
               <div className="flex gap-3">
+                {user && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="lg"
+                    className="flex-1"
+                    onClick={handleAddToWatchlist}
+                    disabled={savingToHistory}
+                  >
+                    <BookmarkPlus className="w-4 h-4 mr-2" />
+                    {savingToHistory ? "Adding..." : "Add to Watchlist"}
+                  </Button>
+                )}
                 <Button
                   type="button"
                   variant="glass"

@@ -1,7 +1,11 @@
-import { Shield, ExternalLink } from "lucide-react";
+import { Shield, ExternalLink, BookmarkPlus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 interface AppCardProps {
   app: {
@@ -32,6 +36,56 @@ const getScoreBg = (score: number) => {
 };
 
 export const AppCard = ({ app, onViewDetails }: AppCardProps) => {
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [adding, setAdding] = useState(false);
+
+  const handleAddToWatchlist = async () => {
+    if (!user) {
+      toast({
+        variant: "destructive",
+        title: "Login Required",
+        description: "Please login to add apps to your watchlist",
+      });
+      return;
+    }
+
+    setAdding(true);
+    try {
+      const { error } = await supabase
+        .from('user_watchlist')
+        .insert({
+          user_id: user.id,
+          app_id: app.id,
+        });
+
+      if (error) {
+        if (error.message.includes('duplicate')) {
+          toast({
+            variant: "destructive",
+            title: "Already Added",
+            description: "This app is already in your watchlist",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Added to Watchlist",
+          description: "You can view this app in your dashboard",
+        });
+      }
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: err.message || "Failed to add to watchlist",
+      });
+    } finally {
+      setAdding(false);
+    }
+  };
+
   return (
     <Card className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/50 overflow-hidden bg-card">
       <CardContent className="p-6">
@@ -92,6 +146,17 @@ export const AppCard = ({ app, onViewDetails }: AppCardProps) => {
           >
             View Details
           </Button>
+          {user && (
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleAddToWatchlist}
+              disabled={adding}
+              title="Add to Watchlist"
+            >
+              <BookmarkPlus className="w-4 h-4" />
+            </Button>
+          )}
           {app.play_store_link && (
             <Button
               variant="outline"

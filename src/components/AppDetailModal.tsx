@@ -17,8 +17,8 @@ interface App {
   trust_score: number;
   developer: string;
   rbi_verified: boolean;
-  permissions: string[];
-  reason: string;
+  permissions?: string[];
+  reason?: string;
   icon_url: string | null;
   play_store_link: string | null;
 }
@@ -116,16 +116,18 @@ export const AppDetailModal = ({ app, open, onOpenChange }: AppDetailModalProps)
           </div>
 
           {/* AI Reasoning */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              🤖 AI Analysis
-            </h3>
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-              <p className="text-sm leading-relaxed text-foreground/90">
-                {app.reason}
-              </p>
+          {app.reason && (
+            <div>
+              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                🤖 AI Analysis
+              </h3>
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  {app.reason}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Permissions */}
           {app.permissions && app.permissions.length > 0 && (
