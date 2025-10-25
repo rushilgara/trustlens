@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Shield, Scan, ArrowRight, MessageSquare, Compass, User, LogIn } from "lucide-react";
+import { Shield, Scan, ArrowRight, MessageSquare, Compass, User, LogIn, Users } from "lucide-react";
 import { useState } from "react";
 import { AppScanModal } from "./AppScanModal";
 import { Link } from "react-router-dom";
@@ -108,6 +108,12 @@ export const HeroSection = () => {
               Scan an App
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
+            <Link to="/community">
+              <Button variant="hero" size="xl" className="group">
+                <Users className="w-5 h-5 mr-2" />
+                Join Community
+              </Button>
+            </Link>
             <Link to="/explore">
               <Button variant="hero" size="xl" className="group">
                 <Compass className="w-5 h-5 mr-2" />
