@@ -35,7 +35,7 @@ export const ProblemSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       
@@ -44,22 +44,22 @@ export const ProblemSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block glass-card px-6 py-2 mb-6">
-            <span className="text-destructive font-semibold">⚠️ The Crisis</span>
+          <div className="inline-block glass-card px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-destructive font-semibold text-sm sm:text-base">⚠️ The Crisis</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             The Core <span className="gradient-text">Problem</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             People don't know which apps they can trust — and they realize{" "}
             <span className="text-destructive font-semibold">too late</span>.
           </p>
         </motion.div>
 
         {/* Problem Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {problems.map((problem, idx) => (
             <motion.div
               key={idx}
@@ -94,15 +94,15 @@ export const ProblemSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 glass-card max-w-4xl mx-auto p-8 text-center animated-border"
+          className="mt-12 sm:mt-16 glass-card max-w-4xl mx-auto p-6 sm:p-8 text-center animated-border"
         >
-          <Shield className="w-12 h-12 text-accent-emerald mx-auto mb-4" />
-          <h3 className="text-2xl font-bold mb-4">
+          <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-accent-emerald mx-auto mb-4" />
+          <h3 className="text-xl sm:text-2xl font-bold mb-4">
             <span className="gradient-text">₹10,000 Crores</span> lost to loan app scams in 2024 alone
           </h3>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base sm:text-lg">
             Victims are left with stolen data, harassment, and financial ruin.
-            <br />
+            <br className="hidden sm:block" />
             <span className="text-accent-emerald font-semibold">TrustLens AI is here to stop this.</span>
           </p>
         </motion.div>

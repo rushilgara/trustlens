@@ -67,24 +67,24 @@ const FinSage = () => {
     <div className="min-h-screen flex flex-col hero-gradient">
       {/* Header */}
       <header className="sticky top-0 z-50 glass border-b border-accent-cyan/20 backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <ArrowLeft className="w-5 h-5 text-accent-cyan" />
-              <span className="text-sm text-muted-foreground">Back to Home</span>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
+            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0">
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-accent-cyan" />
+              <span className="text-xs sm:text-sm text-muted-foreground hidden sm:inline">Back to Home</span>
             </Link>
-            <div className="flex items-center gap-3">
-              <Sparkles className="w-6 h-6 text-accent-cyan animate-pulse-glow" />
-              <h1 className="text-2xl font-bold gradient-text">FinSage</h1>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-accent-cyan animate-pulse-glow" />
+              <h1 className="text-xl sm:text-2xl font-bold gradient-text">FinSage</h1>
             </div>
-            <div className="w-24" /> {/* Spacer for center alignment */}
+            <div className="w-16 sm:w-24" /> {/* Spacer for center alignment */}
           </div>
         </div>
       </header>
 
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto">
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 max-w-4xl">
           <AnimatePresence>
             {messages.map((message, idx) => (
               <motion.div
@@ -96,7 +96,7 @@ const FinSage = () => {
                 className={`mb-6 flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[80%] p-4 rounded-2xl ${
+                  className={`max-w-[90%] sm:max-w-[80%] p-3 sm:p-4 rounded-2xl ${
                     message.role === "user"
                       ? "bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 ml-auto"
                       : "glass-card"
@@ -145,14 +145,14 @@ const FinSage = () => {
 
       {/* Input Area */}
       <div className="sticky bottom-0 border-t border-accent-cyan/20 glass backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-6 max-w-4xl">
-          <div className="flex gap-3">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-4xl">
+          <div className="flex gap-2 sm:gap-3">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-              placeholder="Ask me anything about finances..."
-              className="glass border-accent-cyan/30 focus:border-accent-cyan flex-1"
+              placeholder="Ask about finances..."
+              className="glass border-accent-cyan/30 focus:border-accent-cyan flex-1 text-sm sm:text-base"
               disabled={loading}
             />
             <Button
@@ -160,16 +160,16 @@ const FinSage = () => {
               disabled={loading || !input.trim()}
               variant="premium"
               size="lg"
-              className="px-6"
+              className="px-4 sm:px-6 shrink-0"
             >
               {loading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
               ) : (
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
             </Button>
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-3">
+          <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-2 sm:mt-3">
             Powered by TrustLens AI & OpenAI GPT
           </p>
         </div>

@@ -270,18 +270,18 @@ export default function Dashboard() {
       {/* Header */}
       <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
               <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="w-4 h-4" />
-                Home
+                <span className="hidden sm:inline">Home</span>
               </Link>
-              <div>
-                <h1 className="text-2xl font-bold gradient-text">Dashboard</h1>
-                <p className="text-sm text-muted-foreground">{user?.email}</p>
+              <div className="flex-1 sm:flex-none">
+                <h1 className="text-xl sm:text-2xl font-bold gradient-text">Dashboard</h1>
+                <p className="text-xs sm:text-sm text-muted-foreground truncate max-w-[200px] sm:max-w-none">{user?.email}</p>
               </div>
             </div>
-            <Button variant="outline" onClick={handleLogout}>
+            <Button variant="outline" onClick={handleLogout} size="sm" className="w-full sm:w-auto">
               <LogOut className="w-4 h-4 mr-2" />
               Logout
             </Button>
@@ -289,9 +289,9 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <Card className="glass-card">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -345,7 +345,7 @@ export default function Dashboard() {
             ) : (
               <div className="space-y-4">
                 {scannedApps.map((app) => (
-                  <div key={app.scan_id} className="flex items-center gap-4 p-4 rounded-lg border border-border/50 hover:border-primary/50 transition-colors">
+                  <div key={app.scan_id} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 p-4 rounded-lg border border-border/50 hover:border-primary/50 transition-colors">
                     <div className="w-12 h-12 rounded-lg overflow-hidden bg-muted flex-shrink-0">
                       {app.icon_url ? (
                         <img src={app.icon_url} alt={app.app_name} className="w-full h-full object-cover" />
@@ -357,21 +357,23 @@ export default function Dashboard() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-semibold truncate">{app.app_name}</h4>
-                      <p className="text-sm text-muted-foreground">{app.developer}</p>
+                      <p className="text-sm text-muted-foreground truncate">{app.developer}</p>
                     </div>
-                    <Badge className={getScoreColor(app.trust_score)}>
+                    <Badge className={`${getScoreColor(app.trust_score)} shrink-0`}>
                       {app.trust_score}/100
                     </Badge>
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" onClick={() => setSelectedApp(app)}>
+                    <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                      <Button size="sm" variant="outline" onClick={() => setSelectedApp(app)} className="flex-1 sm:flex-none">
                         Details
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => handleAddToWatchlist(app.id)}
+                        className="flex-1 sm:flex-none"
                       >
-                        Add to Watchlist
+                        <span className="hidden sm:inline">Add to Watchlist</span>
+                        <span className="sm:hidden">Watchlist</span>
                       </Button>
                       <Button
                         size="sm"

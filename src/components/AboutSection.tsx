@@ -8,7 +8,7 @@ export const AboutSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated Grid Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
@@ -23,12 +23,12 @@ export const AboutSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="inline-block glass-card px-6 py-2 mb-6">
-            <span className="text-accent-emerald font-semibold">🎯 Our Mission</span>
+          <div className="inline-block glass-card px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-accent-emerald font-semibold text-sm sm:text-base">🎯 Our Mission</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
             Why We Built <span className="gradient-text">TrustLens</span>
           </h2>
         </motion.div>
@@ -37,22 +37,22 @@ export const AboutSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-card p-12 animated-border"
+          className="glass-card p-6 sm:p-8 md:p-12 animated-border"
         >
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Mission Statement */}
             <div className="text-center max-w-3xl mx-auto">
-              <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-muted-foreground">
                 Misinformation and fake fintech apps exploit millions of users every year. 
                 People lose their money, data, and dignity to predatory practices.
               </p>
-              <p className="text-xl md:text-2xl leading-relaxed mt-6 font-semibold">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mt-4 sm:mt-6 font-semibold">
                 <span className="gradient-text">TrustLens restores digital trust proactively.</span>
               </p>
             </div>
 
             {/* Core Values */}
-            <div className="grid md:grid-cols-3 gap-6 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8">
               {[
                 {
                   icon: Target,
@@ -80,21 +80,21 @@ export const AboutSection = () => {
                   transition={{ duration: 0.5, delay: 0.4 + idx * 0.1 }}
                   className="glass-card p-6 text-center"
                 >
-                  <div className={`w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-accent-${value.color}/20 to-accent-${value.color}/5 flex items-center justify-center mb-4`}>
-                    <value.icon className={`w-7 h-7 text-accent-${value.color}`} />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-2xl bg-gradient-to-br from-accent-${value.color}/20 to-accent-${value.color}/5 flex items-center justify-center mb-3 sm:mb-4`}>
+                    <value.icon className={`w-6 h-6 sm:w-7 sm:h-7 text-accent-${value.color}`} />
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground">{value.description}</p>
+                  <h3 className="font-bold text-base sm:text-lg mb-2">{value.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{value.description}</p>
                 </motion.div>
               ))}
             </div>
 
             {/* Vision Statement */}
-            <div className="pt-8 border-t border-accent-cyan/20">
-              <h3 className="text-2xl font-bold mb-4 text-center">
+            <div className="pt-6 sm:pt-8 border-t border-accent-cyan/20">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-center">
                 <span className="gradient-text">The Future We're Building</span>
               </h3>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-3 sm:space-y-4 text-muted-foreground text-sm sm:text-base">
                 <p>
                   ✨ <strong className="text-foreground">Chrome extension:</strong> Live TrustLens verification badges on fintech websites
                 </p>

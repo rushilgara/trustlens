@@ -23,7 +23,13 @@ const categories = [
   "Loans",
   "Insurance",
   "Budgeting",
-  "Crypto",
+  "Cryptocurrency",
+  "Tax Filing",
+  "Retirement Planning",
+  "Personal Finance",
+  "Wealth Management",
+  "Fixed Deposits",
+  "International Finance",
   "Others",
 ];
 
@@ -114,44 +120,44 @@ const ExploreSafeApps = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-4 mb-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex items-center gap-3 sm:gap-4 mb-4">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate("/")}
-              className="hover:bg-primary/10"
+              className="hover:bg-primary/10 shrink-0"
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
-            <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent truncate">
                 Explore Safe Apps
               </h1>
-              <p className="text-muted-foreground mt-1">
+              <p className="text-sm sm:text-base text-muted-foreground mt-1">
                 Discover trusted finance apps, verified by AI
               </p>
             </div>
           </div>
 
           {/* Search and Filters */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1">
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
-                placeholder="Search apps by name, category, or developer..."
+                placeholder="Search apps..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[200px]">
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-[300px]">
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -160,7 +166,7 @@ const ExploreSafeApps = () => {
                 </SelectContent>
               </Select>
               <Select value={sortBy} onValueChange={(value: "trust_score" | "app_name") => setSortBy(value)}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[180px]">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -172,14 +178,14 @@ const ExploreSafeApps = () => {
           </div>
 
           {/* Results count */}
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4">
             Showing {filteredApps.length} {filteredApps.length === 1 ? 'app' : 'apps'}
           </p>
         </div>
       </div>
 
       {/* Apps Grid */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -187,10 +193,10 @@ const ExploreSafeApps = () => {
           </div>
         ) : filteredApps.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No apps found matching your criteria</p>
+            <p className="text-muted-foreground text-base sm:text-lg">No apps found matching your criteria</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredApps.map((app) => (
               <AppCard
                 key={app.id}

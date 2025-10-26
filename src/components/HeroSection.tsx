@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AppScanModal } from "./AppScanModal";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { MobileNav } from "./MobileNav";
 
 export const HeroSection = () => {
   const [scanModalOpen, setScanModalOpen] = useState(false);
@@ -12,8 +13,11 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
-      {/* Auth Navigation */}
-      <div className="absolute top-4 right-4 z-20">
+      {/* Mobile Navigation */}
+      <MobileNav />
+      
+      {/* Desktop Auth Navigation */}
+      <div className="absolute top-4 right-4 z-20 hidden md:block">
         {user ? (
           <Link to="/dashboard">
             <Button variant="hero" size="lg">
@@ -51,17 +55,17 @@ export const HeroSection = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 z-10">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 pt-16 md:pt-0">
           {/* Floating Shield Icon */}
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, type: "spring" }}
-            className="flex justify-center mb-6"
+            className="flex justify-center mb-4 sm:mb-6"
           >
-            <div className="glass-card p-6 rounded-full glow-cyan inline-block">
-              <Shield className="w-16 h-16 text-accent-cyan animate-pulse-glow" />
+            <div className="glass-card p-4 sm:p-6 rounded-full glow-cyan inline-block">
+              <Shield className="w-12 h-12 sm:w-16 sm:h-16 text-accent-cyan animate-pulse-glow" />
             </div>
           </motion.div>
 
@@ -70,11 +74,11 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-bold leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-tight px-2"
           >
             <span className="gradient-text">TrustLens AI</span>
             <br />
-            <span className="text-4xl md:text-5xl font-normal text-muted-foreground">
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-muted-foreground">
               Your Financial Safety Guardian
             </span>
           </motion.h1>
@@ -84,10 +88,10 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4"
           >
             AI-powered protection against fake loan apps, scams, and misinformation.
-            <br />
+            <br className="hidden sm:block" />
             <span className="gradient-text font-semibold">Intelligent. Proactive. Trustworthy.</span>
           </motion.p>
 
@@ -96,33 +100,33 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <Button 
               variant="premium" 
-              size="xl" 
-              className="group"
+              size="lg"
+              className="group w-full sm:w-auto"
               onClick={() => setScanModalOpen(true)}
             >
-              <Scan className="w-5 h-5 mr-2 group-hover:animate-pulse" />
+              <Scan className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:animate-pulse" />
               Scan an App
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Link to="/community">
-              <Button variant="hero" size="xl" className="group">
-                <Users className="w-5 h-5 mr-2" />
+            <Link to="/community" className="w-full sm:w-auto">
+              <Button variant="hero" size="lg" className="group w-full">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Join Community
               </Button>
             </Link>
-            <Link to="/explore">
-              <Button variant="hero" size="xl" className="group">
-                <Compass className="w-5 h-5 mr-2" />
+            <Link to="/explore" className="w-full sm:w-auto">
+              <Button variant="hero" size="lg" className="group w-full">
+                <Compass className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Explore Safe Apps
               </Button>
             </Link>
-            <Link to="/finsage">
-              <Button variant="hero" size="xl" className="group">
-                <MessageSquare className="w-5 h-5 mr-2" />
+            <Link to="/finsage" className="w-full sm:w-auto">
+              <Button variant="hero" size="lg" className="group w-full">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Chat with FinSage
               </Button>
             </Link>
@@ -133,16 +137,16 @@ export const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-6 pt-8"
+            className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-6 sm:pt-8 px-4"
           >
             {[
               { label: "Apps Scanned", value: "50K+" },
               { label: "Scams Detected", value: "12K+" },
               { label: "Users Protected", value: "100K+" },
             ].map((stat, idx) => (
-              <div key={idx} className="glass-card px-6 py-4 min-w-[140px]">
-                <div className="text-3xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div key={idx} className="glass-card px-4 py-3 sm:px-6 sm:py-4 min-w-[120px] sm:min-w-[140px]">
+                <div className="text-2xl sm:text-3xl font-bold gradient-text">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </motion.div>

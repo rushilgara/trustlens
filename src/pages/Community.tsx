@@ -94,17 +94,17 @@ export default function Community() {
     <div className="min-h-screen bg-background">
       <CommunityHeader />
 
-      <div className="container py-8">
+      <div className="container px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Hero Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
             TrustLens Community
           </h1>
-          <p className="text-muted-foreground">Where finance meets trust — powered by AI</p>
+          <p className="text-sm sm:text-base text-muted-foreground">Where finance meets trust — powered by AI</p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
           <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className="w-full md:w-48">
               <SelectValue placeholder="Category" />

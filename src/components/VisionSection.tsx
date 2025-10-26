@@ -15,39 +15,39 @@ export const VisionSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-24 px-4 relative overflow-hidden">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-cyan/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-emerald/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-cyan/10 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-emerald/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
           {/* Left - Vision Text */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="inline-block glass-card px-6 py-2 mb-4">
-              <span className="text-accent-cyan font-semibold">✨ Our Vision</span>
+            <div className="inline-block glass-card px-4 sm:px-6 py-2 mb-2 sm:mb-4">
+              <span className="text-accent-cyan font-semibold text-sm sm:text-base">✨ Our Vision</span>
             </div>
             
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Make financial safety as{" "}
               <span className="gradient-text">smart</span> as financial{" "}
               <span className="gradient-text-gold">growth</span>
             </h2>
 
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
               TrustLens AI is your <span className="text-accent-cyan font-semibold">agentic financial guardian</span> — 
               proactive, explainable, and evolving. We don't just detect threats; we learn, adapt, and protect you before harm strikes.
             </p>
 
             {/* Capabilities List */}
-            <div className="space-y-4 pt-4">
+            <div className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
               {capabilities.map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -56,10 +56,10 @@ export const VisionSection = () => {
                   transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
                   className="flex items-center gap-4 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <item.icon className="w-6 h-6 text-accent-cyan" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-cyan" />
                   </div>
-                  <p className="text-lg font-medium">{item.text}</p>
+                  <p className="text-base sm:text-lg font-medium">{item.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -70,10 +70,10 @@ export const VisionSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative mt-8 lg:mt-0"
           >
             {/* Central Shield */}
-            <div className="relative mx-auto w-80 h-80 flex items-center justify-center">
+            <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
               {/* Rotating Rings */}
               <motion.div
                 animate={{ rotate: 360 }}
@@ -92,9 +92,9 @@ export const VisionSection = () => {
               <motion.div
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="glass-card p-12 rounded-full glow-cyan"
+                className="glass-card p-8 sm:p-12 rounded-full glow-cyan"
               >
-                <Shield className="w-32 h-32 text-accent-cyan animate-pulse-glow" />
+                <Shield className="w-24 h-24 sm:w-32 sm:h-32 text-accent-cyan animate-pulse-glow" />
               </motion.div>
 
               {/* Floating AI Indicators */}
