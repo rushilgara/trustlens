@@ -1,33 +1,36 @@
 import { motion } from "framer-motion";
-import { Brain, Bell, Database, Users } from "lucide-react";
+import { Brain, Bell, Database, Users, Shield, ArrowRight } from "lucide-react";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Button } from "./ui/button";
 
 const features = [
   {
     icon: Brain,
     title: "AI-Powered Scam Detector",
-    description: "Advanced machine learning analyzes app behavior, permissions, and patterns to detect predatory practices instantly",
-    gradient: "from-accent-cyan to-accent-emerald",
+    description: "Advanced machine learning analyzes app behavior, permissions, and patterns to detect predatory practices instantly.",
   },
   {
     icon: Bell,
     title: "Real-Time Risk Alerts",
-    description: "Get notified immediately when an installed app's risk profile changes or new threats emerge",
-    gradient: "from-accent-emerald to-accent-gold",
+    description: "Get notified immediately when an installed app's risk profile changes or new threats emerge.",
   },
   {
     icon: Database,
     title: "Cross-Verified Data",
-    description: "Combines RBI registrations, user complaints, and regulatory data for comprehensive risk assessment",
-    gradient: "from-accent-gold to-accent-cyan",
+    description: "Combines RBI registrations, user complaints, and regulatory data for comprehensive assessment.",
   },
   {
     icon: Users,
     title: "Community Lens",
-    description: "Real user reviews and experiences help identify scams faster through collective intelligence",
-    gradient: "from-accent-cyan to-primary-glow",
+    description: "Real user reviews and experiences help identify scams faster through collective intelligence.",
   },
+];
+
+const stats = [
+  { value: "8M+", label: "Users Protected" },
+  { value: "825K+", label: "Apps Scanned" },
+  { value: "4K+", label: "Threats Blocked/Day" },
 ];
 
 export const FeaturesSection = () => {
@@ -35,92 +38,99 @@ export const FeaturesSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-cyan/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-emerald/5 rounded-full blur-3xl" />
+    <section ref={ref} className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-background">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-[300px] h-[300px] bg-accent-gold/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-accent-cyan/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container mx-auto relative z-10 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <div className="inline-block glass-card px-4 sm:px-6 py-2 mb-4 sm:mb-6">
-            <span className="text-accent-cyan font-semibold text-sm sm:text-base">⚡ Core Features</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            Complete <span className="gradient-text">Protection Suite</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Multi-layered AI defense system that adapts and evolves with emerging threats
-          </p>
-        </motion.div>
+      <div className="container mx-auto relative z-10 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <div>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+                Financial <span className="italic font-light text-muted-foreground">protection</span>
+                <br />
+                to keep you <span className="text-accent-gold">secure</span>.
+              </h2>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-lg">
+                Apply <span className="font-semibold text-foreground">quickly</span> and{" "}
+                <span className="font-semibold text-foreground">easily</span> scan any financial app 
+                before trusting it with your data.
+              </p>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="glass-card p-6 sm:p-8 group cursor-pointer relative overflow-hidden"
-            >
-              {/* Gradient Overlay on Hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-              
-              <div className="relative z-10">
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-accent-gold hover:bg-accent-gold/90 text-background font-semibold px-6 py-6 rounded-full text-base">
+                Get Started
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button variant="ghost" className="text-muted-foreground hover:text-foreground font-medium px-6 py-6 rounded-full text-base">
+                How it works?
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-wrap gap-8 sm:gap-12 pt-8 border-t border-border/50">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-full bg-accent-gold/20 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-accent-gold" />
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-foreground">{stat.value}</p>
+                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right - Feature Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-5 sm:p-6 hover:border-accent-gold/30 transition-all duration-300"
+              >
                 {/* Icon */}
-                <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform`}>
-                  <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-background" />
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-accent-gold/20 to-accent-gold/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <feature.icon className="w-5 h-5 text-accent-gold" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-accent-cyan transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold mb-2 text-foreground group-hover:text-accent-gold transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
-
-                {/* Animated Border */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-accent-cyan to-accent-emerald"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-
-        {/* Additional Feature Highlight */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-12 sm:mt-16 glass-card p-6 sm:p-8 animated-border"
-        >
-          <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6">
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
-                <span className="gradient-text">Agentic AI Behavior</span>
-              </h3>
-              <p className="text-base sm:text-lg text-muted-foreground">
-                Unlike traditional scanners, TrustLens AI actively monitors, learns, and notifies you when risk profiles change. 
-                It's not just reactive — it's <span className="text-accent-emerald font-semibold">proactive protection</span>.
-              </p>
-            </div>
-            <div className="glass-card p-4 sm:p-6 rounded-full shrink-0">
-              <Brain className="w-16 h-16 sm:w-20 sm:h-20 text-accent-cyan animate-pulse-glow" />
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
