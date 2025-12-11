@@ -22,18 +22,16 @@ export const MobileNav = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="fixed top-4 left-4 z-50 md:hidden glass-card"
+          className="fixed top-4 left-4 z-50 md:hidden bg-foreground/90 backdrop-blur-sm text-bento-dark hover:bg-foreground shadow-lg rounded-full"
         >
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[280px] bg-background/95 backdrop-blur-xl border-r border-border/50">
+      <SheetContent side="left" className="w-[280px] bg-bento-light border-r border-bento-dark/10">
         <SheetHeader className="mb-6">
           <SheetTitle className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20">
-              <Shield className="w-6 h-6 text-accent-cyan" />
-            </div>
-            <span className="gradient-text text-xl font-bold">TrustLens AI</span>
+            <Shield className="w-7 h-7 text-bento-dark" />
+            <span className="text-xl font-bold text-bento-dark">TrustLens AI</span>
           </SheetTitle>
         </SheetHeader>
 
@@ -43,31 +41,31 @@ export const MobileNav = () => {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-bento-dark hover:bg-foreground transition-colors"
             >
-              <item.icon className="w-5 h-5 text-accent-cyan" />
+              <item.icon className="w-5 h-5 text-bento-purple" />
               <span className="font-medium">{item.label}</span>
             </Link>
           ))}
 
-          <div className="my-4 h-px bg-border" />
+          <div className="my-4 h-px bg-bento-dark/10" />
 
           {user ? (
             <>
               <Link
                 to="/dashboard"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-bento-dark hover:bg-foreground transition-colors"
               >
-                <LayoutDashboard className="w-5 h-5 text-accent-cyan" />
+                <LayoutDashboard className="w-5 h-5 text-bento-purple" />
                 <span className="font-medium">Dashboard</span>
               </Link>
               <Link
                 to="/profile/edit"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-accent/10 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-bento-dark hover:bg-foreground transition-colors"
               >
-                <User className="w-5 h-5 text-accent-cyan" />
+                <User className="w-5 h-5 text-bento-purple" />
                 <span className="font-medium">Profile</span>
               </Link>
             </>
@@ -75,9 +73,9 @@ export const MobileNav = () => {
             <Link
               to="/auth"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-accent-cyan/20 to-accent-emerald/20 hover:from-accent-cyan/30 hover:to-accent-emerald/30 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-bento-purple text-foreground hover:bg-bento-purple/90 transition-colors"
             >
-              <LogIn className="w-5 h-5 text-accent-cyan" />
+              <LogIn className="w-5 h-5" />
               <span className="font-medium">Login / Sign Up</span>
             </Link>
           )}
@@ -85,9 +83,7 @@ export const MobileNav = () => {
 
         <div className="absolute bottom-6 left-6 right-6">
           <Button
-            variant="premium"
-            size="lg"
-            className="w-full"
+            className="w-full bg-accent-lime text-bento-dark hover:bg-accent-lime/90 rounded-full py-6 font-semibold"
             onClick={() => setOpen(false)}
           >
             <Scan className="w-4 h-4 mr-2" />

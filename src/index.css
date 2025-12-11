@@ -23,6 +23,12 @@
     --accent-cyan: 190 85% 55%;
     --accent-emerald: 160 75% 50%;
     --accent-gold: 45 95% 60%;
+    --accent-lime: 82 85% 55%;
+    
+    /* Bento Card Colors */
+    --bento-light: 245 70% 85%;
+    --bento-dark: 230 30% 15%;
+    --bento-purple: 250 60% 50%;
     
     /* Glass Morphism */
     --glass: 0 0% 100%;
