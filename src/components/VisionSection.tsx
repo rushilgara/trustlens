@@ -1,133 +1,112 @@
 import { motion } from "framer-motion";
-import { Brain, Eye, Zap, Shield, TrendingUp } from "lucide-react";
+import { Shield, Sparkles, Eye, Zap } from "lucide-react";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-
-const capabilities = [
-  { icon: Eye, text: "Scans app permissions & data practices" },
-  { icon: Brain, text: "Predicts risk using AI algorithms" },
-  { icon: Zap, text: "Advises users instantly with actionable insights" },
-  { icon: TrendingUp, text: "Learns continuously from new threats" },
-];
+import { Button } from "./ui/button";
 
 export const VisionSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-cyan/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-accent-emerald/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+    <section ref={ref} className="py-20 sm:py-28 md:py-36 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background">
+      {/* Subtle Background Circle */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] rounded-full border border-border/30 opacity-50" />
+        <div className="absolute w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] rounded-full border border-border/20" />
       </div>
 
-      <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
-          {/* Left - Vision Text */}
+      <div className="container mx-auto relative z-10 max-w-5xl">
+        {/* Main Content - Centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16 sm:mb-20"
+        >
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]">
+            Welcome
+            <br />
+            <span className="block">To <span className="font-semibold text-primary">TrustLens</span></span>
+          </h2>
+          
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto mb-8">
+            The ultimate financial protection hack is here. Your AI-powered guardian for safe digital finance.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-8 py-6 rounded-full text-base shadow-lg">
+              <Sparkles className="mr-2 w-4 h-4" />
+              Get Started
+            </Button>
+            <Button variant="outline" className="font-medium px-8 py-6 rounded-full text-base border-border/50 hover:bg-muted/50">
+              Learn More
+            </Button>
+          </div>
+        </motion.div>
+
+        {/* Feature Badges - Floating around */}
+        <div className="relative h-20 sm:h-32">
+          {/* Left Badge */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="space-y-4 sm:space-y-6"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute left-0 sm:left-10 top-0 bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl px-4 py-3 shadow-sm"
           >
-            <div className="inline-block glass-card px-4 sm:px-6 py-2 mb-2 sm:mb-4">
-              <span className="text-accent-cyan font-semibold text-sm sm:text-base">✨ Our Vision</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Make financial safety as{" "}
-              <span className="gradient-text">smart</span> as financial{" "}
-              <span className="gradient-text-gold">growth</span>
-            </h2>
-
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-              TrustLens AI is your <span className="text-accent-cyan font-semibold">agentic financial guardian</span> — 
-              proactive, explainable, and evolving. We don't just detect threats; we learn, adapt, and protect you before harm strikes.
-            </p>
-
-            {/* Capabilities List */}
-            <div className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
-              {capabilities.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-                  className="flex items-center gap-4 group"
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-emerald/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-cyan" />
-                  </div>
-                  <p className="text-base sm:text-lg font-medium">{item.text}</p>
-                </motion.div>
-              ))}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-accent-cyan/10 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-accent-cyan" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-foreground">AI Protection</p>
+                <p className="text-xs text-muted-foreground">Active 24/7</p>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right - Animated Guardian Hologram */}
+          {/* Right Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative mt-8 lg:mt-0"
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="absolute right-0 sm:right-10 top-0 bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl px-4 py-3 shadow-sm"
           >
-            {/* Central Shield */}
-            <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
-              {/* Rotating Rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border-4 border-accent-cyan/30 rounded-full"
-                style={{ borderStyle: "dashed" }}
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-8 border-4 border-accent-emerald/30 rounded-full"
-                style={{ borderStyle: "dashed" }}
-              />
-
-              {/* Central Shield Glow */}
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="glass-card p-8 sm:p-12 rounded-full glow-cyan"
-              >
-                <Shield className="w-24 h-24 sm:w-32 sm:h-32 text-accent-cyan animate-pulse-glow" />
-              </motion.div>
-
-              {/* Floating AI Indicators */}
-              {[0, 90, 180, 270].map((angle, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: [0.5, 1, 0.5],
-                    y: [0, -10, 0]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: idx * 0.5
-                  }}
-                  className="absolute w-4 h-4 bg-accent-emerald rounded-full"
-                  style={{
-                    top: `${50 + 45 * Math.sin((angle * Math.PI) / 180)}%`,
-                    left: `${50 + 45 * Math.cos((angle * Math.PI) / 180)}%`,
-                  }}
-                />
-              ))}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-accent-emerald/10 flex items-center justify-center">
+                <Eye className="w-5 h-5 text-accent-emerald" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-medium text-foreground">Smart Scanning</p>
+                <p className="text-xs text-muted-foreground">Real-time analysis</p>
+              </div>
             </div>
+          </motion.div>
 
-            {/* Scanning Effect */}
-            <motion.div
-              animate={{ y: ["0%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-cyan to-transparent opacity-50"
-            />
+          {/* Center Bottom Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 sm:-bottom-4 bg-card/80 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 shadow-sm"
+          >
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-accent-gold" />
+              <span className="text-sm font-medium text-foreground">Instant Results</span>
+            </div>
           </motion.div>
         </div>
+
+        {/* Bottom Text */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center text-muted-foreground text-sm sm:text-base mt-20 sm:mt-24 max-w-lg mx-auto"
+        >
+          Bye bye scams. See you later fake apps. Adios financial nightmares. 
+          Your safety is our priority.
+        </motion.p>
       </div>
     </section>
   );
