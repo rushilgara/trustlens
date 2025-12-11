@@ -42,6 +42,12 @@ export default {
           cyan: "hsl(var(--accent-cyan))",
           emerald: "hsl(var(--accent-emerald))",
           gold: "hsl(var(--accent-gold))",
+          lime: "hsl(var(--accent-lime))",
+        },
+        bento: {
+          light: "hsl(var(--bento-light))",
+          dark: "hsl(var(--bento-dark))",
+          purple: "hsl(var(--bento-purple))",
         },
         success: "hsl(var(--success))",
         warning: "hsl(var(--warning))",
